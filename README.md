@@ -465,14 +465,13 @@ $$
   - Adagrad 的主要优势在于不需要人为的调节学习率，它可以自动调节；缺点在于随着迭代次数增多，学习率会越来越小，最终会趋近于0。
 
 - RMSProp
-  $$
+$$
   \begin{aligned}
   E[g^2]_t	&= \gamma E[g^2]_{t-1} + (1-\alpha) g_t^2 \\
   \theta_{t+1}&= \theta_{t} -\frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} \bigodot g_t  \\
   
   \end{aligned}
-  $$
-
+$$
   - $E[g^2]_t$表示前`t`次的梯度平方的均值。由于取了个加权平均，避免了学习率越来越低的的问题，而且能自适应地调节学习率。
   - RMSProp算法修改了AdaGrad的梯度积累为指数加权的移动平均，使得其在非凸设定下效果更好
 
@@ -598,7 +597,7 @@ L1正则解空间是稀疏的。
 - 假设给定输入为x，label为y，其中y的取值为0或者1，是一个分类问题。我们要训练一个最简单的Logistic Regression来学习一个函数f(x)使得它能较好的拟合label，如下图所示。
 
 
-![图片](Pictures\ML\LR_loss.png?raw=true)
+![图片](Pictures/ML/LR_loss.png?raw=true)
 
 其中$z(x) = \omega \cdot x + b, \quad \sigma(z) = \frac{1}{1+e^{-z}}$。均方差（Mean square error），和交叉熵(Cross entry error)损失如下：
 $$
@@ -662,7 +661,7 @@ $$
 - 标准RNN
 
 
-![图片](Pictures\NLP\rnnbp.png?raw=true)
+![图片](Pictures/NLP/rnnbp.png?raw=true)
 
 对于$t$时刻：
 $$
@@ -765,12 +764,11 @@ $\textcolor{red}{即SYN就是询问： 你能听得到吗？  ACK就是回到：
 
   - TCP四次挥手
 
-![图片](Pictures\computer_network\tcp四次挥手.png?raw=true)
+![图片](Pictures/computer_network/tcp四次挥手.png?raw=true)
 
   四次挥手：
 
-![图片](Pictures\computer_network\tcp四次挥手解释.png?raw=true)
-
+![图片](Pictures/computer_network/tcp四次挥手解释.png?raw=true)
 
 
   A:“喂，**我不说了 (FIN)**。”A->FIN_WAIT1
@@ -814,7 +812,7 @@ HTTP/3 把 HTTP 下层的 TCP 协议改成了 UDP！
 - **拥塞控制**，目的是为了避免发送方的数据填满整个网络。
 
 
-![图片](Pictures\computer_network\TCP可靠性传输.png?raw=true)
+![图片](Pictures/computer_network/TCP可靠性传输.png?raw=true)
 
 #### HTTP和HTTPS的区别
 
@@ -828,7 +826,7 @@ HTTP/3 把 HTTP 下层的 TCP 协议改成了 UDP！
 - HTTPS需要向CA（证书权威机构）申请数字证书，来保证服务器的身份是可信的。
 
 
-![图片](Pictures\computer_network\https加密.png?raw=true)
+![图片](Pictures/computer_network/https加密.png?raw=true)
 
 
  证书验证，客户端发送一个证书请求个服务器端，服务器端返回证书，客户端对证书进行验证。 
@@ -1152,7 +1150,7 @@ b树（balance tree）和b+树应用在数据库索引，可以认为是m叉的�
 ### c++四种cast转化
 
 
-![图片](Pictures\C++\cast强制类型转换.png?raw=true)
+![图片](Pictures/C++/cast强制类型转换.png?raw=true)
 
 ### 指针和引用
 
@@ -1195,11 +1193,11 @@ b树（balance tree）和b+树应用在数据库索引，可以认为是m叉的�
 - 序列容器：`deque`、`vector`、`list`、`forward_list`、`array`、`string`
 
 
-![图片](Pictures\C++\顺序容器.png?raw=true)
+![图片](Pictures/C++/顺序容器.png?raw=true)
 
 - 关联容器:
 
-![图片](Pictures\C++\关联容器.png?raw=true)
+![图片](Pictures/C++/关联容器.png?raw=true)
 
 
 1.vector 底层数据结构为数组 ，支持快速随机访问
@@ -1224,7 +1222,7 @@ deque是一个双端队列(double-ended queue)，也是在堆中保存内容的.
 #### `STL`迭代器删除元素
 
 
-![图片](Pictures\C++\STL迭代器删除元素.png?raw=true)
+![图片](Pictures/C++/STL迭代器删除元素.png?raw=true)
 
 
 #### `map`和`unordered_map`比较
@@ -1292,7 +1290,7 @@ deque是一个双端队列(double-ended queue)，也是在堆中保存内容的.
 #### `new` 和 `delete`,`malooc`和`free`
 
 
-![图片](Pictures\C++\new,malloc.png?raw=true)
+![图片](Pictures/C++/new,malloc.png?raw=true)
 
 - `malloc` 和 `free`
 
@@ -2032,10 +2030,10 @@ $$
 
 设随机变量X具有数学期望$E(x) = \mu$，方差$D(X) = \sigma^2$，则对任意正数$ \epsilon $,
 $$
-\begin{align}
+\begin{aligned}
 P \{ |X - \mu| < \epsilon \} & \leq 1 - \frac{\sigma^2}{\epsilon^2}  \quad or\\
 P \{ |X - \mu| \geq \epsilon \} & \geq  \frac{\sigma^2}{\epsilon^2} 
-\end{align}
+\end{aligned}
 $$
 
 ### 最速下降法、牛顿法、拟牛顿法
@@ -2043,11 +2041,11 @@ $$
 - 最速下降法
 
 
-![图片](Pictures\Math\最速下降法.png?raw=true)
+![图片](Pictures/Math/最速下降法.png?raw=true)
 
 - 牛顿法
 
-![图片](Pictures\Math\牛顿法.png?raw=true)
+![图片](Pictures/Math/牛顿法.png?raw=true)
 
 - 拟牛顿法
 
@@ -2092,7 +2090,7 @@ $$
 - 遗传算法
 
 
-  ![图片](Pictures\Math\遗传算法流程.png?raw=true)
+  ![图片](Pictures/Math/遗传算法流程.png?raw=true)
 
 ### 最大似然估计（MLE）和最大后验概率(MAP)
 
