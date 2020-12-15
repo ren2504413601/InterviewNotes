@@ -67,15 +67,13 @@ K近邻方法是一种基本的分类和回归方法。利用训练数据集对�
 
 - 对比
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 ![图片](Pictures\ML\decision_feature.png?raw=true)
-=======
-![图片](https://github.com/ren2504413601/2020interview/tree/main/Pictures/ML/decision_feature.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
-=======
-![图片](https://github.com/ren2504413601/2020interview/tree/main/Pictures/ML/decision_feature.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures/ML/decision_feature.png?raw=true)
+
+![图片](Pictures/ML/decision_feature.png?raw=true)
 
 | 算法 | 支持模型   | 树结构 | 特征选择         | 连续值处理 | 缺失值处理 | 剪枝   |
 | ---- | ---------- | ------ | ---------------- | ---------- | ---------- | ------ |
@@ -125,21 +123,19 @@ GBDT 是一种基于boosting集成思想的加法模型。训练时采用前向�
 
 ![图片](Pictures\boosting_tree.PNG?raw=true)
 
-<<<<<<< HEAD
+
   ![图片](Pictures\square_loss_fit.PNG?raw=true)
-=======
-  ![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\square_loss_fit.PNG?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+  ![图片](Pictures\square_loss_fit.PNG?raw=true)
 
 **梯度提升**
 
 损失函数选择平方误差函数和指数损失函数$L(y,f(x))=exp[-yf(x)]$(AdaBoost)时残差易于计算。一般损失函数可以利用损失函数的负梯度方向作为残差的近似值，拟合一个回归树。
 
-<<<<<<< HEAD
+
 ![图片](Pictures\gradient_regression.png)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\gradient_regression.png)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\gradient_regression.png)
 
 **Note:**XGBoost 与GBDT基本思想相同，但是作了一些优化。如默认的缺失值处理、损失函数加入二阶导数信息、正则项、列抽样，可以并行计算等。
 
@@ -236,7 +232,7 @@ $$
 
 **感知机**：
 
-<<<<<<< HEAD
+
 ![图片](Pictures/perception.png?raw=true)
 
 **单个隐藏层的感知机**：
@@ -248,19 +244,18 @@ $$
 **激励函数**：
 
 ![图片](Pictures\activattion_function.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\perception.png?raw=true)
+
+![图片](Pictures\perception.png?raw=true)
 
 **单个隐藏层的感知机**：
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\bp_nn.png?raw=true)
+![图片](Pictures\bp_nn.png?raw=true)
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\bp_algorithm.png?raw=true)
+![图片](Pictures\bp_algorithm.png?raw=true)
 
 **激励函数**：
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\activattion_function.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+![图片](Pictures\activattion_function.png?raw=true)
 
 **优化方法**：
 
@@ -317,11 +312,10 @@ $$
 `PCA` 只能处理线性数据的降维 (其本质上是线性变换)，仅是筛选方差最大的特征，去除特征之间的线性相关性，对于线性不可分的数据常常效果很差，因此提出了 `KPCA` 方法。
 `KPCA`算法的思想如下，数据在低维度空间不是线性可分的，但是在高维度空间就可以变成线性可分的了。利用这个特点，将原始数据通过核函数（kernel）映射到高维度空间，再利用 `PCA`算法进行降维。 
 
-<<<<<<< HEAD
+
 ![图片](Pictures\pca.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\pca.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\pca.png?raw=true)
 
 
 
@@ -359,11 +353,10 @@ EM算法
 
 #### Kmeans
 
-<<<<<<< HEAD
+
 ![图片](Pictures\kmeans.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\kmeans.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\kmeans.png?raw=true)
 
 - `Kmeans`优缺点
   - 优点：计算复杂度`O(NKt)`接近线性，`N`是样本总数，`K`是聚类个数，`t`是迭代的轮数
@@ -412,11 +405,10 @@ EM算法
 
   [3]`LSTM`结构在计算得到新状态后需要产生当前时刻的输出，这个过程是由**输出门**完成的。
 
-<<<<<<< HEAD
+
   ![图片](Pictures\NLP\LSTM_formula.jpg?raw=true)
-=======
-  ![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\NLP\LSTM_formula.jpg?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+  ![图片](Pictures\NLP\LSTM_formula.jpg?raw=true)
 
 公式定义
 $$
@@ -588,11 +580,10 @@ L1正则解空间是稀疏的。
 
   L2正则的解空间是圆形，L1正则的解空间是多边形。多边形的解空间更容易在尖角处于等高线碰撞处稀疏解
 
-<<<<<<< HEAD
+
   ![图片](Pictures\ML\regular_space.png?raw=true)
-=======
-  ![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\ML\regular_space.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+  ![图片](Pictures\ML\regular_space.png?raw=true)
 
 
 ### 超参数调优方法
@@ -633,11 +624,10 @@ L1正则解空间是稀疏的。
 
 - 假设给定输入为x，label为y，其中y的取值为0或者1，是一个分类问题。我们要训练一个最简单的Logistic Regression来学习一个函数f(x)使得它能较好的拟合label，如下图所示。
 
-<<<<<<< HEAD
+
 ![图片](Pictures\ML\LR_loss.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\ML\LR_loss.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\ML\LR_loss.png?raw=true)
 
 其中$z(x) = \omega \cdot x + b, \quad \sigma(z) = \frac{1}{1+e^{-z}}$。均方差（Mean square error），和交叉熵(Cross entry error)损失如下：
 $$
@@ -689,11 +679,10 @@ $$
 
   Skip-gram是根据当前词来预测上下文中各词的生成概率 
 
-<<<<<<< HEAD
+
 ![图片](Pictures\NLP\word2vector.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\NLP\word2vector.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\NLP\word2vector.png?raw=true)
 
 #### 循环神经网络RNN
 
@@ -703,11 +692,10 @@ $$
 
 - 标准RNN
 
-<<<<<<< HEAD
+
 ![图片](Pictures\NLP\rnnbp.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\NLP\rnnbp.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\NLP\rnnbp.png?raw=true)
 
 对于$t$时刻：
 $$
@@ -739,11 +727,10 @@ $$
 
   - 公式定义
 
-<<<<<<< HEAD
+
   ![图片](Pictures/NLP/LSTM_formula.jpg?raw=true)
-=======
-  ![](https://github.com/ren2504413601/2020interview/tree/main/Pictures/NLP/LSTM_formula.jpg?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+  ![图片](Pictures/NLP/LSTM_formula.jpg?raw=true)
   $$
   \begin{aligned}
   z	&= tanh(W_z[h_{t-1}, x_t])		&	(输入值)\\
@@ -771,19 +758,18 @@ $$
 
 #### 网络体系（OSI七层、TCP/IP四层、五层）
 
-<<<<<<< HEAD
+
 #### ![图片](Pictures\computer_network\network_system.png)[TCP三次握手四次挥手](https://www.cnblogs.com/zhuzhenwei918/p/7465467.html)
 
 - TCP三次握手
 
 ![图片](Pictures\computer_network\TCP_threeway_handshake.png?raw=true)
-=======
-#### ![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\computer_network\network_system.png)[TCP三次握手四次挥手](https://www.cnblogs.com/zhuzhenwei918/p/7465467.html)
+
+#### ![图片](Pictures\computer_network\network_system.png)[TCP三次握手四次挥手](https://www.cnblogs.com/zhuzhenwei918/p/7465467.html)
 
 - TCP三次握手
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\computer_network\TCP_threeway_handshake.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+![图片](Pictures\computer_network\TCP_threeway_handshake.png?raw=true)
 
 第一次握手：
 
@@ -816,7 +802,7 @@ $\textcolor{red}{即SYN就是询问： 你能听得到吗？  ACK就是回到：
 
 如果四次，那么就造成了浪费，因为在三次结束之后，就已经可以保证A可以给B发信息，A可以收到B的信息； B可以给A发信息，B可以收到A的信息
 
-<<<<<<< HEAD
+
 ![图片](Pictures\computer_network\TCP_threeway_handshake.png?raw=true)
 
   - TCP四次挥手
@@ -826,17 +812,16 @@ $\textcolor{red}{即SYN就是询问： 你能听得到吗？  ACK就是回到：
   四次挥手：
 
 ![图片](Pictures\computer_network\tcp四次挥手解释.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\computer_network\TCP_threeway_handshake.png?raw=true)
+
+![图片](Pictures\computer_network\TCP_threeway_handshake.png?raw=true)
 
   - TCP四次挥手
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\computer_network\tcp四次挥手.png?raw=true)
+![图片](Pictures\computer_network\tcp四次挥手.png?raw=true)
 
   四次挥手：
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\computer_network\tcp四次挥手解释.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+![图片](Pictures\computer_network\tcp四次挥手解释.png?raw=true)
 
   A:“喂，**我不说了 (FIN)**。”A->FIN_WAIT1
 
@@ -878,11 +863,10 @@ HTTP/3 把 HTTP 下层的 TCP 协议改成了 UDP！
 - 发送方不能无脑的发送数据给接收方，要考虑接收方的处理能力。为了避免接收方处理不过来，TCP提供**流量控制**机制解决。
 - **拥塞控制**，目的是为了避免发送方的数据填满整个网络。
 
-<<<<<<< HEAD
+
 ![图片](Pictures\computer_network\TCP可靠性传输.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\computer_network\TCP可靠性传输.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\computer_network\TCP可靠性传输.png?raw=true)
 
 #### HTTP和HTTPS的区别
 
@@ -895,11 +879,10 @@ HTTP/3 把 HTTP 下层的 TCP 协议改成了 UDP！
 
 - HTTPS需要向CA（证书权威机构）申请数字证书，来保证服务器的身份是可信的。
 
-<<<<<<< HEAD
+
 ![图片](Pictures\computer_network\https加密.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\computer_network\https加密.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\computer_network\https加密.png?raw=true)
 
  证书验证，客户端发送一个证书请求个服务器端，服务器端返回证书，客户端对证书进行验证。 
 
@@ -1221,19 +1204,18 @@ b树（balance tree）和b+树应用在数据库索引，可以认为是m叉的�
 
 ### c++四种cast转化
 
-<<<<<<< HEAD
+
 ![图片](Pictures\C++\cast强制类型转换.png?raw=true)
 
 ### 指针和引用
 
 ![图片](Pictures/C++/指针和引用.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\C++\cast强制类型转换.png?raw=true)
+
+![图片](Pictures\C++\cast强制类型转换.png?raw=true)
 
 ### 指针和引用
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures/C++/指针和引用.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+![图片](Pictures/C++/指针和引用.png?raw=true)
 
 ### 源码到可执行文件的过程
 
@@ -1271,19 +1253,18 @@ b树（balance tree）和b+树应用在数据库索引，可以认为是m叉的�
 
 - 序列容器：`deque`、`vector`、`list`、`forward_list`、`array`、`string`
 
-<<<<<<< HEAD
+
 ![图片](Pictures\C++\顺序容器.png?raw=true)
 
 - 关联容器:
 
 ![图片](Pictures\C++\关联容器.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\C++\顺序容器.png?raw=true)
+
+![图片](Pictures\C++\顺序容器.png?raw=true)
 
 - 关联容器:
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\C++\关联容器.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+![图片](Pictures\C++\关联容器.png?raw=true)
 
 1.vector 底层数据结构为数组 ，支持快速随机访问
 2.list 底层数据结构为双向链表，支持快速增删
@@ -1306,11 +1287,10 @@ deque是一个双端队列(double-ended queue)，也是在堆中保存内容的.
 
 #### `STL`迭代器删除元素
 
-<<<<<<< HEAD
+
 ![图片](Pictures\C++\STL迭代器删除元素.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\C++\STL迭代器删除元素.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\C++\STL迭代器删除元素.png?raw=true)
 
 #### `map`和`unordered_map`比较
 
@@ -1376,11 +1356,10 @@ deque是一个双端队列(double-ended queue)，也是在堆中保存内容的.
 
 #### `new` 和 `delete`,`malooc`和`free`
 
-<<<<<<< HEAD
+
 ![图片](Pictures\C++\new,malloc.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\C++\new,malloc.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+![图片](Pictures\C++\new,malloc.png?raw=true)
 
 - `malloc` 和 `free`
 
@@ -2130,19 +2109,18 @@ $$
 
 - 最速下降法
 
-<<<<<<< HEAD
+
 ![图片](Pictures\Math\最速下降法.png?raw=true)
 
 - 牛顿法
 
 ![图片](Pictures\Math\牛顿法.png?raw=true)
-=======
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\Math\最速下降法.png?raw=true)
+
+![图片](Pictures\Math\最速下降法.png?raw=true)
 
 - 牛顿法
 
-![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\Math\牛顿法.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+![图片](Pictures\Math\牛顿法.png?raw=true)
 
 - 拟牛顿法
 
@@ -2186,11 +2164,10 @@ $$
 
 - 遗传算法
 
-<<<<<<< HEAD
+
   ![图片](Pictures\Math\遗传算法流程.png?raw=true)
-=======
-  ![](https://github.com/ren2504413601/2020interview/tree/main/Pictures\Math\遗传算法流程.png?raw=true)
->>>>>>> 043cba1cfba06177ca3548decdaecbb321186cb3
+
+  ![图片](Pictures\Math\遗传算法流程.png?raw=true)
 
 ### 最大似然估计（MLE）和最大后验概率(MAP)
 
