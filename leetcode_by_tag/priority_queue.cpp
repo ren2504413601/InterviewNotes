@@ -1,6 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/**
+ * TopK
+ * 407. 接雨水 II
+ * 23. 合并K个升序链表
+ * 295. 数据流的中位数
+*/
 
 /**
 1000万条有重复的字符串，找出重复数前10的字符串
@@ -136,3 +142,68 @@ public:
 
     }
 };
+
+/**
+ * 23. 合并K个升序链表
+ * https://leetcode-cn.com/problems/merge-k-sorted-lists/solution/he-bing-kge-pai-xu-lian-biao-by-leetcode-solutio-2/
+*/
+class LC23 {
+public:
+    struct Status {
+        int val;
+        ListNode *ptr;
+        bool operator < (const Status &rhs) const {
+            return val > rhs.val;
+        }
+    };
+
+    priority_queue <Status> q;
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        for (auto node: lists) {
+            if (node) q.push({node->val, node});
+        }
+        ListNode head, *tail = &head;
+        while (!q.empty()) {
+            auto f = q.top(); q.pop();
+            tail->next = f.ptr; 
+            tail = tail->next;
+            if (f.ptr->next) q.push({f.ptr->next->val, f.ptr->next});
+        }
+        return head.next;
+    }
+};
+
+class LC295 {
+public:
+    priority_queue<int> lo; // max-heap
+    priority_queue<int, vector<int>, greater<int>> hi; // min-heap
+    /** initialize your data structure here. */
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int num) {
+        lo.push(num);
+
+        hi.push(lo.top());
+        lo.pop();
+
+        if (lo.size() < hi.size())
+        {
+            lo.push(hi.top());
+            hi.pop();
+        }
+    }
+    
+    double findMedian() {
+        return lo.size() > hi.size() ? double(lo.top()) : double(lo.top() + hi.top()) / 2;
+    }
+};
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder* obj = new MedianFinder();
+ * obj->addNum(num);
+ * double param_2 = obj->findMedian();
+ */

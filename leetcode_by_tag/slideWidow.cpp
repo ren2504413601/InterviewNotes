@@ -3,6 +3,11 @@ using namespace std;
 
 /**
  * 3. 无重复字符的最长子串
+ * 239. 滑动窗口最大值
+ * 76. 最小覆盖子串
+ * 567. 字符串的排列
+ * 438. 找到字符串中所有字母异位词
+ * 424. 替换后的最长重复字符
 */
 class LC3 {
 public:
@@ -33,7 +38,7 @@ public:
  * 239. 滑动窗口最大值
  * 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
  * 你只可以看到在滑动窗口内的 k 个数字。
-*/
+*/ 
 class LC239 {
 public:
     /**
@@ -234,25 +239,26 @@ public:
  * 滑动窗口 
  * l 和 r 确定 左右边界，所以当前窗口的长度是 r - l + 1
  * 如果当前窗口大小 > max_len + k 则说明不能通过修改 k 个字符得到重复子串，需要移动左指针 l
- * 注意：每一次只考虑比之前更大的窗口
+ * 注意：每一次只考虑比之前更大的窗口 
 */
 class LC424 {
 public:
     int characterReplacement(string s, int k) {
-        vector<int> lowerCaseMap(26, 0);
-        int l = 0, r = 0;
-        int max_len = 0;
+
+        vector<int> ucmap(26, 0);
+        int l = 0, r = 0, max_len = 0;
         while (r < s.size())
         {
-            lowerCaseMap[s[r] - 'A']++;
-            max_len = max(max_len, lowerCaseMap[s[r] - 'A']);
-            if (r+1-l-k > max_len)
+            ucmap[s[r] - 'A']++;
+            max_len = max(max_len, ucmap[s[r] - 'A']);
+            if (r + 1 - l - k > max_len)
             {
-                lowerCaseMap[s[l] - 'A']--;
+                ucmap[s[l] - 'A']--;
                 ++l;
             }
             ++r;
         }
-        return s.size() - l;
+        return r - l;
+
     }
 };

@@ -10,13 +10,61 @@ typedef long long ll;
  * LC22. 括号生成 93. 复原IP地址
  * Hard 难度：（需要剪枝或者说判断解是否可行）
  * 51. N皇后    37. 解数独
+ * 39. 组合总和  40. 组合总和 II
  * 
  * LC17. 电话号码的字母组合
- * LC39. 组合总和
- * LC40. 组合总和 II
  * LC60. 第k个排列
+ * 
+ * 131. 分割回文串
+ * 132. 分割回文串 II
 */
 
+
+class LC39 {
+public:
+    vector<vector<int>> ans;
+    void backTrack(int start, int target, vector<int>& candidates, vector<int> tmpAns, int tmpCnt)
+    {
+        if (tmpCnt == target) ans.push_back(tmpAns);
+        for (int i = start; i < candidates.size(); ++i)
+        {
+            if (tmpCnt + candidates[i] > target) break;
+            tmpAns.push_back(candidates[i]);
+            backTrack(i, target, candidates, tmpAns, tmpCnt + candidates[i]);
+            tmpAns.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        backTrack(0, target, candidates, {}, 0);
+        return ans;
+    }
+};
+
+class LC40 {
+public:
+    vector<vector<int>> ans;
+    void backTrack(int start, vector<int>& candidates, int target, vector<int> tmpAns, int tmpCnt)
+    {
+        if (tmpCnt == target) ans.push_back(tmpAns);
+
+        for (int i = start; i < candidates.size(); ++i)
+        {
+            
+            if (tmpCnt + candidates[i] > target) break;
+            tmpAns.push_back(candidates[i]);
+            backTrack(i + 1, candidates, target, tmpAns, tmpCnt + candidates[i]);
+            tmpAns.pop_back();
+
+            while (i + 1 < candidates.size() && candidates[i] == candidates[i + 1]) ++i;
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        backTrack(0, candidates, target, {}, 0);
+        return ans;
+    }
+};
 
 /**
  * 46. 全排列
@@ -387,42 +435,45 @@ public:
     }
 };
 
+
 class LC17 {
-private:
-    vector<string> ans;
-    vector<vector<char>> map;
 public:
-    void backTrack(int currIdx, string tmpStr, string& digits)
+    vector<vector<char>> digit_map;
+    vector<string> ans;
+    void backTrack(int start, string& digits, string tmpAns)
     {
-        if (currIdx == digits.size())
+        if (start == digits.size())
         {
-            ans.push_back(tmpStr);
+            ans.push_back(tmpAns);
             return;
         }
-        int curr = digits[currIdx] - '0';
-        for (char c : map[curr])
+        int tnum = digits[start] - '0';
+        for (char& c : digit_map[tnum])
         {
             if (c == '*') continue;
-            backTrack(currIdx + 1, tmpStr + c, digits);
+            tmpAns.push_back(c);
+            backTrack(start + 1, digits, tmpAns);
+            tmpAns.pop_back();
         }
+        
     }
     vector<string> letterCombinations(string digits) {
         if (digits.empty()) return ans;
+        digit_map.assign(10, vector<char>(4, '*'));
+        digit_map[2] = {'a', 'b', 'c'};
+        digit_map[3] = {'d', 'e', 'f'};
+        digit_map[4] = {'g', 'h', 'i'};
 
-        map.assign(10, vector<char>(5, '*'));
+        digit_map[5] = {'j', 'k', 'l'};
+        digit_map[6] = {'m', 'n', 'o'};
+        digit_map[7] = {'p', 'q', 'r', 's'};
 
-        map[2][1] = 'a', map[2][2] = 'b', map[2][3] = 'c';
-        map[3][1] = 'd', map[3][2] = 'e', map[3][3] = 'f';
-        map[4][1] = 'g', map[4][2] = 'h', map[4][3] = 'i';
-        map[5][1] = 'j', map[5][2] = 'k', map[5][3] = 'l';
-        map[6][1] = 'm', map[6][2] = 'n', map[6][3] = 'o';
-        map[7][1] = 'p', map[7][2] = 'q', map[7][3] = 'r', map[7][4] = 's';
+        digit_map[8] = {'t', 'u', 'v'};
+        digit_map[9] = {'w', 'x', 'y', 'z'};
 
-        map[8][1] = 't', map[8][2] = 'u', map[8][3] = 'v';
-        map[9][1] = 'w', map[9][2] = 'x', map[9][3] = 'y', map[9][4] = 'z';
-        
-        backTrack(0, "", digits);
+        backTrack(0, digits, {});
         return ans;
+
     }
 };
 
@@ -528,5 +579,83 @@ public:
         }
         return ans;
         
+    }
+};
+
+
+class LC131 {
+public:
+    int N;
+    vector<vector<string>> res;
+    bool Judge(string str)
+    {
+        int n = str.size();
+        for (int i = 0; i < n / 2; ++i)
+        {
+            if (str[i] != str[n - 1 - i]) return false;
+        }
+        return true;
+    }
+    void backTrack(int start, string& s, vector<string> tmpVec)
+    {
+        if (start >= N)
+        {
+            res.push_back(tmpVec);
+            return;
+        }
+        for (int t = 1; t + start <= N; ++t)
+        {
+            string ts = s.substr(start, t);
+            if (Judge(ts))
+            {
+                tmpVec.push_back(ts);
+                backTrack(t + start, s, tmpVec);
+                tmpVec.pop_back();
+            }
+        }
+    }
+    vector<vector<string>> partition(string s) {
+        N = s.size();
+        backTrack(0, s, {});
+        return res;
+    }
+};
+
+
+class LC132 {
+public:
+
+    bool Judge(string tmps)
+    {
+        int tn = tmps.size();
+        for (int i = 0; i < tn / 2; ++i)
+        {
+            if (tmps[i] != tmps[tn - 1 - i]) return false;
+        }
+        return true;
+    }
+
+    int minCut(string s) {
+        int n = s.size();
+        int dp[n];
+        for (int i = 0; i < n; ++i)
+        {
+            if (Judge(s.substr(0, i + 1)))
+            {
+                dp[i] = 0;
+            }
+            else
+            {
+                dp[i] = 0x3f3f3f3f;
+                for (int j = 0; j < i; ++j)
+                {
+                    if (Judge(s.substr(j + 1, i - j)))
+                    {
+                        dp[i] = min(dp[i], dp[j] + 1);
+                    }
+                }
+            }
+        }
+        return dp[n - 1];
     }
 };

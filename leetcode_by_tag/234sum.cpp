@@ -3,12 +3,18 @@ using namespace std;
 
 /**
  * 1. 两数之和
+ * 15. 三数之和
+ * 18. 四数之和
+ * 454. 四数相加 II
+ * 560. 和为K的子数组
+*/
+class LC1 {
+public:
+/**
  * nums[i] + nums[j] = target
  * 一次遍历 + Hash
  * 时间：O(n)
 */
-class LC1 {
-public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> umap;
         for (int i = 0; i < nums.size(); ++i)
@@ -24,7 +30,6 @@ public:
 };
 
 /**
- * 15. 三数之和
  * a + b + c = 0
  * 注意：答案中不可以包含重复的三元组
  * 排序 + 双指针
@@ -61,7 +66,6 @@ public:
 };
 
 /**
- * 18. 四数之和
  * 类似三数之和
  * 时间：O(n^3)
 */
@@ -102,7 +106,6 @@ public:
 };
 
 /**
- * 454. 四数相加 II
  * 给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，
  * 使得 A[i] + B[j] + C[k] + D[l] = 0
  * 两轮Hash计数， 类似于 两数之和 
@@ -124,6 +127,29 @@ public:
             for (int& d : D)
             {
                 if (umap.find(c+d) != umap.end()) cnt += umap[c+d];
+            }
+        }
+        return cnt;
+    }
+};
+
+
+class LC560 {
+public:
+    /**
+     * 前缀和
+    */
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int, int> umap;
+        // umap[0] = 1;
+        int cnt = 0, preSum = 0;
+        for (int& num : nums)
+        {
+            umap[preSum]++;
+            preSum += num;
+            if (umap.find(preSum - k) != umap.end())
+            {
+                cnt += umap[preSum - k];
             }
         }
         return cnt;

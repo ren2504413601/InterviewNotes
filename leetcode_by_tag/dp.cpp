@@ -269,6 +269,47 @@ public:
     }
 };
 
+class LC354 {
+public:
+    int maxEnvelopes(vector<vector<int>>& envelopes) {
+        if (envelopes.empty()) return 0;
+        int m = envelopes.size();
+        // 先按照 w 升序排序， w 相同情形再按照 h 降序排序
+        sort(envelopes.begin(), envelopes.end(), [](const vector<int>& lhs,
+        const vector<int>& rhs){
+            if (lhs[0] < rhs[0])
+            {
+                return true;
+            }
+            else if (lhs[0] == rhs[0])
+            {
+                return lhs[1] > rhs[1];
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+        // 寻找排序完的 h 列的最长上升子列个数
+        // dp[i] 包含 i 列的最长上升子序列个数
+        int dp[m];
+        fill(dp, dp + m, 1);
+        for (int i = 1; i < m; ++i)
+        {
+            for (int j = 0; j < i; ++j)
+            {
+                if (envelopes[i][1] > envelopes[j][1])
+                {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        return *max_element(dp, dp + m);
+    }
+};
+
+
 /**
  * LC887. 鸡蛋掉落
  * 动态规划 + 二分搜索
@@ -362,6 +403,35 @@ public:
             }
         }
         return ans;
+    }
+};
+
+class LC312 {
+public:
+    /**
+     * 区间 DP
+     * dp[i][j] 表示 i 到 j 编号的气球获得的最大收益
+     * dp[l][r] = max(dp[l][r], dp[l][k - 1] + dp[k + 1][r] + nums[l - 1] * nums[k] * nums[r + 1])
+     * 这里当 l < r dp[l][r] = 0
+    */
+    int maxCoins(vector<int>& nums) {
+        int n = nums.size();
+        if (n == 0) return 0;
+        if (n == 1) return nums[0];
+        nums.insert(nums.begin(), 1);
+        nums.push_back(1);
+        vector<vector<int>> dp(n + 2, vector<int>(n + 2, 0));
+        for (int len = 1; len <= n; ++len)
+        {
+            for (int l = 1, r = l + len - 1; r <= n; ++l, ++r)
+            {
+                for (int k = l; k <= r; ++k)
+                {
+                    dp[l][r] = max(dp[l][r], dp[l][k - 1] + dp[k + 1][r] + nums[l - 1] * nums[k] * nums[r + 1]);
+                }
+            }
+        }
+        return dp[1][n];
     }
 };
 
@@ -639,6 +709,59 @@ public:
     }
 };
 
+class LC1143 {
+public:
+    // 查找 word1 与 word2 的最长公共子序列
+    // LC1143. 最长公共子序列
+    // dp[i][j] 表示 word1 前 i 个字符及 word2 前 j 个字符的最长公共子序列
+    int minDistance(string word1, string word2) {
+        int n1 = word1.size(), n2 = word2.size();
+        int dp[n1 + 1][n2 + 1];
+        memset(dp, 0, sizeof(dp));
+
+        for (int i = 1; i <= n1; ++i)
+        {
+            for (int j = 1; j <= n2; ++j)
+            {
+                if (word1[i - 1] == word2[j - 1])
+                {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                }
+                else
+                {
+                    dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]);
+                }
+            }
+        }
+
+        return n1 + n2 - 2 * dp[n1][n2];
+    }
+};
+
+class LC452 {
+public:
+    // 容易知道引爆的位置总是可以设置在 end 的位置
+    // 根据 end 从小到大排序，然后对开始位置贪心策略
+    int findMinArrowShots(vector<vector<int>>& points) {
+        if (points.empty()) return 0;
+        sort(points.begin(), points.end(), [](const vector<int>& lhs,
+         const vector<int>& rhs){
+             return lhs[1] < rhs[1];
+         });
+
+        int ans = 1, pos = points[0][1];
+        for (const vector<int>& balloon : points)
+        {
+            if (balloon[0] > pos)
+            {
+                pos = balloon[1];
+                ++ans;
+            }
+        }
+        return ans;
+    }
+};
+
 /**
  * 120. 三角形最小路径和
  * 倒序DP 
@@ -646,7 +769,11 @@ public:
 */
 class LC120 {
 public:
-
+    /**
+     * 辅助边界 m + 1 个 0
+     * dp[i][j] 表示从最下层到 i 行 j 列的最小路径和
+     * 状态转移 dp[i][j] = min(dp[i][j], min(dp[i + 1][j], dp[i + 1][j + 1])) + triangle[i][j]
+    */
     int minimumTotal(vector<vector<int>>& triangle) {
         int m = triangle.size();
         if (m == 0) return 0;
@@ -656,11 +783,12 @@ public:
         {
             for (int j = 0; j <= i; ++j)
             {
-                dp[i][j] = INT_MAX;
-                dp[i][j] = min(dp[i][j], min(dp[i + 1][j], dp[i + 1][j + 1])) + triangle[i][j];
+                dp[i][j] = min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle[i][j];
             }
         }
         return dp[0][0];
     }
 };
+
+
 
