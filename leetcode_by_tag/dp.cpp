@@ -269,6 +269,9 @@ public:
     }
 };
 
+/**
+ * 354. 俄罗斯套娃信封问题
+*/
 class LC354 {
 public:
     int maxEnvelopes(vector<vector<int>>& envelopes) {
@@ -319,7 +322,7 @@ public:
  * 所以不会出现鸡蛋不够用的情况
  * 状态转移 ： dp(K,N)=1+ min(max(dp(K−1,X−1),dp(K,N−X))) 其中 1<=x<=N
  * 表示假设在第X层做一次尝试，要么鸡蛋摔碎，对应好状态（K-1, X-1）楼层小于X只剩K-1个鸡蛋
- * 如果鸡蛋没有摔碎，那么楼层高于x但小于等于N，剩余N个鸡蛋，对应状态(K, N-X)。考虑最坏情形，
+ * 如果鸡蛋没有摔碎，那么楼层高于x但小于等于N，剩余K个鸡蛋，对应状态(K, N-X)。考虑最坏情形，
  * 两者取较大者，再对所有的楼层X取小，这就建立了状态的转移
  * 对dp[K,N]的求解这里考虑到 dp(K−1,X−1)随X单增,dp(K,N−X)单减。使用二分查找求解
  */ 
@@ -406,6 +409,9 @@ public:
     }
 };
 
+/**
+ * 312. 戳气球
+*/
 class LC312 {
 public:
     /**
@@ -790,5 +796,45 @@ public:
     }
 };
 
+/**
+ * 132. 分割回文串 II
+*/
+class LC132 {
+public:
+
+    bool Judge(string tmps)
+    {
+        int tn = tmps.size();
+        for (int i = 0; i < tn / 2; ++i)
+        {
+            if (tmps[i] != tmps[tn - 1 - i]) return false;
+        }
+        return true;
+    }
+
+    int minCut(string s) {
+        int n = s.size();
+        int dp[n];
+        for (int i = 0; i < n; ++i)
+        {
+            if (Judge(s.substr(0, i + 1)))
+            {
+                dp[i] = 0;
+            }
+            else
+            {
+                dp[i] = 0x3f3f3f3f;
+                for (int j = 0; j < i; ++j)
+                {
+                    if (Judge(s.substr(j + 1, i - j)))
+                    {
+                        dp[i] = min(dp[i], dp[j] + 1);
+                    }
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+};
 
 

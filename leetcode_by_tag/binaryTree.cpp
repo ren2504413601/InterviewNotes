@@ -26,6 +26,8 @@ typedef long long ll;
  * 450. 删除二叉搜索树中的节点
  * 297. 二叉树的序列化与反序列化
  * 236. 二叉树的最近公共祖先
+ * 剑指 Offer 26. 树的子结构
+ * 101. 对称二叉树
 */
 
  // Definition for a binary tree node.
@@ -93,6 +95,46 @@ TreeNode* genTreeByVector(vector<string>& array)
 	}
 	return root;
 }
+
+
+class LC101 {
+public:
+    bool helper(TreeNode* lTree, TreeNode* rTree)
+    {
+        if (lTree == nullptr && rTree == nullptr) return true;
+        else if (lTree == nullptr || rTree == nullptr) return false;
+        else
+        {
+            return lTree->val == rTree-> val && helper(lTree->left, rTree->right) && helper(lTree->right, rTree->left);
+        }
+    }
+    bool isSymmetric(TreeNode* root) {
+        return helper(root, root);
+    }
+};
+
+class LC_JZ26 {
+public:
+    bool isSubStructure(TreeNode* A, TreeNode* B) {
+        if (A == NULL || B == NULL) return false;
+        if (A->val == B->val) {
+            if (dfs_isEqual(A, B)) {
+                return true;
+            }
+        }
+        return isSubStructure(A->left, B) || isSubStructure(A->right, B);
+    }
+
+    bool dfs_isEqual(TreeNode* A, TreeNode* B) {
+        if (B == NULL) return true;
+        if (A == NULL) return false;
+        if (A->val == B->val) { 
+            return dfs_isEqual(A->left, B->left) && dfs_isEqual(A->right, B->right);
+        } else {
+            return false;
+        }
+    }
+};
 
 /**
  * 二叉树中序遍历

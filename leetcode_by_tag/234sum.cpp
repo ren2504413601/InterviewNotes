@@ -72,7 +72,7 @@ public:
 class LC18 {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        vector<vector<int>> ans;
+         vector<vector<int>> ans;
         sort(nums.begin(), nums.end());
         int n = nums.size();
         for (int i = 0; i < n; ++i)
@@ -86,15 +86,14 @@ public:
                 for (; k < n; ++k)
                 {
                     if (k > j + 1 && nums[k] == nums[k-1]) continue;
-
-                    while (s > k && nums[i] + nums[j] + nums[k] + nums[s] > target)
+                    while (s > k && long(nums[i]) + nums[j] + nums[k] + nums[s] > long(target))
                     {
                         --s;
                     }
 
                     if (s == k) break;
 
-                    if (nums[i] + nums[j] + nums[k] + nums[s] == target)
+                    if (long(nums[i])+ nums[j] + nums[k] + nums[s] == long(target))
                     {
                         ans.push_back({nums[i], nums[j], nums[k], nums[s]});
                     }

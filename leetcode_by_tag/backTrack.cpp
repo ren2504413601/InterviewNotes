@@ -73,9 +73,11 @@ public:
  */ 
 class LC46 {
 public:
+    int cnt = 0;
     vector<vector<int>> paths;
     void backTrack(vector<int>& nums, int start)
     {
+        cnt++;
         if (nums.size() == start)
         {
             paths.push_back(nums);
@@ -103,6 +105,8 @@ public:
             }
             cout << endl;
         }
+
+        cout << cnt;
     }
 };
 
@@ -257,7 +261,7 @@ public:
 
 int main()
 {
-    vector<int> nums46 = {1, 2, 3};
+    vector<int> nums46 = {1, 2, 3, 4};
     LC46 lc46;
     lc46.print_result(nums46);
 
@@ -477,71 +481,71 @@ public:
     }
 };
 
-class LC39 {
-private:
-    vector<vector<int>> ans;
-public:
-    void backTrack(int currIdx, int target, vector<int>& candidates, vector<int>& tmpAns, int& tmpSum)
-    {
-        if (tmpSum == target)
-        {
-            ans.push_back(tmpAns);
-            return;
-        }
-        for (int i = currIdx; i < candidates.size() && tmpSum + candidates[i] <= target; ++i)
-        {
-            tmpAns.push_back(candidates[i]);
-            tmpSum += candidates[i];
-            backTrack(i, target, candidates, tmpAns, tmpSum);
-            tmpAns.pop_back();
-            tmpSum -= candidates[i];
-        }
-        return;
-    }
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        if (candidates.empty()) return ans;
-        sort(candidates.begin(), candidates.end());
-        if (target < candidates.front()) return ans;
-        vector<int> tmpAns; int tmpSum = 0;
-        backTrack(0, target, candidates, tmpAns, tmpSum);
-        return ans;
-    }
-};
+// class LC39 {
+// private:
+//     vector<vector<int>> ans;
+// public:
+//     void backTrack(int currIdx, int target, vector<int>& candidates, vector<int>& tmpAns, int& tmpSum)
+//     {
+//         if (tmpSum == target)
+//         {
+//             ans.push_back(tmpAns);
+//             return;
+//         }
+//         for (int i = currIdx; i < candidates.size() && tmpSum + candidates[i] <= target; ++i)
+//         {
+//             tmpAns.push_back(candidates[i]);
+//             tmpSum += candidates[i];
+//             backTrack(i, target, candidates, tmpAns, tmpSum);
+//             tmpAns.pop_back();
+//             tmpSum -= candidates[i];
+//         }
+//         return;
+//     }
+//     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+//         if (candidates.empty()) return ans;
+//         sort(candidates.begin(), candidates.end());
+//         if (target < candidates.front()) return ans;
+//         vector<int> tmpAns; int tmpSum = 0;
+//         backTrack(0, target, candidates, tmpAns, tmpSum);
+//         return ans;
+//     }
+// };
 
-class LC40 {
-private:
-    vector<vector<int>> ans;
-public:
-    void backTrack(vector<int>& candidates, int& target, int currIdx, int currSum, vector<int>& currVec)
-    {
-        if (currSum == target)
-        {
-            ans.push_back(currVec);
-            return;
-        }
-        for (int i = currIdx; i < candidates.size() && currSum + candidates[i] <= target; ++i)
-        {
-            currSum += candidates[i];
-            currVec.push_back(candidates[i]);
-            backTrack(candidates, target, i + 1, currSum, currVec);
-            currSum -= candidates[i];
-            currVec.pop_back();
-            while (i + 1 < candidates.size() && candidates[i] == candidates[i + 1])
-            {
-                ++i;
-            }
-        }
-        return;
-    }
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        if (candidates.empty()) return ans;
-        sort(candidates.begin(), candidates.end());
-        if (target < candidates.front()) return ans;
-        vector<int > currVec;
-        backTrack(candidates, target, 0, 0, currVec);
-        return ans;   
-    }
-};
+// class LC40 {
+// private:
+//     vector<vector<int>> ans;
+// public:
+//     void backTrack(vector<int>& candidates, int& target, int currIdx, int currSum, vector<int>& currVec)
+//     {
+//         if (currSum == target)
+//         {
+//             ans.push_back(currVec);
+//             return;
+//         }
+//         for (int i = currIdx; i < candidates.size() && currSum + candidates[i] <= target; ++i)
+//         {
+//             currSum += candidates[i];
+//             currVec.push_back(candidates[i]);
+//             backTrack(candidates, target, i + 1, currSum, currVec);
+//             currSum -= candidates[i];
+//             currVec.pop_back();
+//             while (i + 1 < candidates.size() && candidates[i] == candidates[i + 1])
+//             {
+//                 ++i;
+//             }
+//         }
+//         return;
+//     }
+//     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+//         if (candidates.empty()) return ans;
+//         sort(candidates.begin(), candidates.end());
+//         if (target < candidates.front()) return ans;
+//         vector<int > currVec;
+//         backTrack(candidates, target, 0, 0, currVec);
+//         return ans;   
+//     }
+// };
 
 class LC60 {
 public:
@@ -659,3 +663,4 @@ public:
         return dp[n - 1];
     }
 };
+

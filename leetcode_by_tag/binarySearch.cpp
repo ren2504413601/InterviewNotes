@@ -4,7 +4,6 @@ using namespace std;
 /**
  * 704. 二分查找
  * 34. 在排序数组中查找元素的第一个和最后一个位置
- * 172. 阶乘后的零
  * 793. 阶乘函数后K个零
 */
 
@@ -85,17 +84,7 @@ public:
 };
 
 
-class LC172 {
-public:
-    int trailingZeroes(int n) {
-        int res = 0;
-        for (int d = n; d / 5 > 0; d = d / 5)
-        {
-            res += d / 5;
-        }
-        return res;
-    }
-};
+
 
 
 class LC793 {
