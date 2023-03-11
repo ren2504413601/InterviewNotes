@@ -2,6 +2,7 @@
 using namespace std;
 
 /**
+ * 215. 数组中的第K个最大元素
  * TopK
  * 407. 接雨水 II
  * 23. 合并K个升序链表
@@ -74,6 +75,98 @@ int main()
     return 0;
 }
 
+class LC215_quickSort {
+public:
+
+    int partation(vector<int>& nums, int l, int r)
+    {
+        int x = nums[r];
+        int i = l;
+        for (int j = l; j < r; ++j)
+        {
+            if (x >= nums[j])
+            {
+                swap(nums[j], nums[i]);
+                i++;
+            }
+        }
+        swap(nums[i], nums[r]);
+        return i;
+    }
+    int random_partation(vector<int>& nums, int l, int r)
+    {
+        int randIdx = rand() % (r - l + 1) + l;
+        swap(nums[randIdx], nums[r]);
+        return partation(nums, l, r);
+    }
+    int quickSort(vector<int>& nums, int l, int r, int idx)
+    {
+        // if (l > r) return;
+
+        int p = partation(nums, l, r);
+        if (p == idx) return nums[p];
+        else if (p < idx)
+        {
+            return quickSort(nums, p+1, r, idx);
+        }
+        else
+        {
+            return quickSort(nums, l, p-1, idx);
+        }
+    }
+    int findKthLargest(vector<int>& nums, int k) {
+        
+        srand(time(0));
+        int n = nums.size();
+        return quickSort(nums, 0, n-1, n-k);
+
+        return nums[n-k];
+    }
+}; 
+
+class LC215_heapsort {
+public:
+
+    void make_heap(vector<int>& nums, int heap_size)
+    {
+        for (int i = heap_size / 2; i >= 0; --i)
+        {
+            make_heap_fix(nums, i, heap_size);
+        }
+    }
+
+    void make_heap_fix(vector<int>& nums, int cur_idx ,int heap_size)
+    {
+        int lchildIdx = cur_idx * 2 + 1, rchildIdx= cur_idx * 2 + 2;
+        int largeIdx = cur_idx;
+        if (lchildIdx < heap_size && nums[lchildIdx] > nums[largeIdx])
+        {
+            largeIdx = lchildIdx;
+        }
+        if (rchildIdx < heap_size && nums[rchildIdx] > nums[largeIdx])
+        {
+            largeIdx = rchildIdx;
+        }
+
+        if (largeIdx != cur_idx)
+        {
+            swap(nums[largeIdx], nums[cur_idx]);
+            cur_idx = largeIdx;
+            make_heap_fix(nums, cur_idx, heap_size);
+        }
+    }
+    int findKthLargest(vector<int>& nums, int k) {
+        int heapSize = nums.size();
+        make_heap(nums, heapSize);
+        for (int i = nums.size() - 1; i >= nums.size() - k + 1; --i) {
+            swap(nums[0], nums[i]);
+            --heapSize;
+            make_heap_fix(nums, 0, heapSize);
+        }
+        return nums[0];
+    }
+};
+
 /**
  * LC407. 接雨水 II
  * 优先队列
@@ -143,6 +236,15 @@ public:
     }
 };
 
+
+ struct ListNode {
+     int val;
+     ListNode *next;
+     ListNode() : val(0), next(nullptr) {}
+     ListNode(int x) : val(x), next(nullptr) {}
+     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ };
+
 /**
  * 23. 合并K个升序链表
  * https://leetcode-cn.com/problems/merge-k-sorted-lists/solution/he-bing-kge-pai-xu-lian-biao-by-leetcode-solutio-2/
@@ -163,7 +265,8 @@ public:
         for (auto node: lists) {
             if (node) q.push({node->val, node});
         }
-        ListNode head, *tail = &head;
+        ListNode head;
+        ListNode *tail = &head;
         while (!q.empty()) {
             auto f = q.top(); q.pop();
             tail->next = f.ptr; 
@@ -179,7 +282,7 @@ public:
     priority_queue<int> lo; // max-heap
     priority_queue<int, vector<int>, greater<int>> hi; // min-heap
     /** initialize your data structure here. */
-    MedianFinder() {
+    LC295() {
         
     }
     

@@ -13,11 +13,10 @@ const int inf = 0x3f3f3f3f;
  * 990. 等式方程的可满足性 并查集
 */
 
-class LC787 {
+class LC787_Dijkstra {
 private:
     int n;
     vector<vector<int>> dist;
-    priority_queue<Node> pque;
     vector<vector<int>> graph;
 public:
     struct Node
@@ -31,6 +30,8 @@ public:
             return min_cost > a.min_cost;
         }
     };
+    priority_queue<Node> pque;
+
     int Dijkstra(int src, int dst, int K)
     {
         dist.assign(K + 2, vector<int>(n, inf)); // dist[i][j] 经过 i 站到达 j 最便宜价格
@@ -80,6 +81,48 @@ public:
     }
 };
 
+class LC787_BFS {
+public:
+// bfs
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<vector<int>> graph(n, vector<int>(n));
+        vector<vector<int>> edges(n);
+        for (int i = 0; i < flights.size(); ++i)
+        {
+            int u = flights[i][0], v = flights[i][1], p = flights[i][2];
+            edges[u].push_back(v);
+            graph[u][v] = p;
+        }
+
+        vector<int> cost(n, INT_MAX);
+        queue<pair<int, int>> que;
+        que.push(make_pair(src, 0));
+
+        k += 1;
+        while (k-- && (!que.empty()))
+        {
+            int m = que.size();
+            while (m--)
+            {
+                pair<int, int> tp = que.front(); que.pop();
+                int loc = tp.first, p = tp.second;
+
+                for (int de : edges[loc])
+                {
+                    if (graph[loc][de] + p < cost[de])
+                    {
+                        cost[de] = graph[loc][de] + p;
+                        que.push(make_pair(de, cost[de]));
+                    }
+                }
+
+            }
+        }
+
+        return cost[dst] == INT_MAX ? -1 : cost[dst];
+
+    }
+};
 
 class LC207 {
 private:
